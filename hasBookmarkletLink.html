@@ -4,17 +4,16 @@
     <title>bookmarlet test</title>
 </head>
 <body>
-// This is a link to an old version of the bookmarklet.
-<a href="javascript:void((function()%7Bvar%20e%3Ddocument.createElement('script')%3B%20%20%20%20%20%20%20%20%20e.setAttribute('type'%2C'text%2Fjavascript')%3B%20%20%20%20%20%20%20%20%20e.setAttribute('src'%2C'testThing.js')%3B%20%20%20%20%20%20%20%20%20document.body.appendChild(e)%20%20%20%20%20%7D)())">twitter copy</a>
+<a href="javascript:var%20src%3Ddocument.createElement('script')%3Bsrc.setAttribute('type'%2C'text%2Fjavascript')%3Bsrc.setAttribute('id'%2C'iframesource')%3Bsrc.setAttribute('src'%2C'http%3A%2F%2Fwww.arilacenski.com%2Fstatic%2FReadToMe%2Fiframesource.js')%3Bif(!document.getElementById('iframesource'))%7Bdocument.body.appendChild(src)%7D">twitter copy</a>
 
-// This is the bookmarklet code that you can minify and put into a javascript:() bookmark.
+<!-- This is the bookmarklet code that you can minify and put into a javascript:() bookmark.
 var src = document.createElement('script');
 src.setAttribute('type', 'text/javascript');
 src.setAttribute('id', 'iframesource');
 src.setAttribute('src', 'http://www.arilacenski.com/static/ReadToMe/iframesource.js');
 if (!document.getElementById('iframesource')) {
 document.body.appendChild(src);
-}
+}    -->
 
 </body>
 </html>
