@@ -4,7 +4,7 @@ body{
 }
 div.allButtons{
     width: 336px;
-    height: 100px;
+    height: 50px;
 }
 div.buttonContainer {
     border: #333 1px solid;
@@ -34,4 +34,8 @@ div.button span{
 
 span#recordButton.on{
     color: #f00;
+}
+
+audio {
+    margin-top: 10px;
 }

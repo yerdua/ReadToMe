@@ -6,17 +6,6 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="fontAwesome/css/font-awesome.min.css">
     <script src="jquery-1.7.1.min.js"></script>
-    <script type="text/javascript">
-        $('#recordButton').live('click', function() {
-            if ($(this).hasClass('on')) {
-                $(this).removeClass('on')
-                //add code for stopping a recording
-            } else {
-                $(this).addClass('on')
-            }
-        })
-
-    </script>
 </head>
 <body>
 <div class="allButtons">
@@ -33,6 +22,56 @@
         </div>
     </div>
 </div>
+<audio controls autoplay></audio>
+<script src="recorder.js"></script>
+<script type="text/javascript">
+    var onFail = function(e) {
+        console.log('Rejected!', e);
+    };
 
+    var onSuccess = function(s) {
+        var context = new webkitAudioContext();
+        var mediaStreamSource = context.createMediaStreamSource(s);
+        recorder = new Recorder(mediaStreamSource);
+        recorder.record();
+
+        // audio loopback
+        // mediaStreamSource.connect(context.destination);
+    };
+
+
+    window.URL = window.URL || window.webkitURL;
+    navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+    var recorder;
+    var audio = document.querySelector('audio');
+    var SoundRecorder = (function() {
+        return {
+            startRecording: function() {
+                if (navigator.getUserMedia) {
+                    navigator.getUserMedia({audio: true}, onSuccess, onFail);
+                } else {
+                    console.log('navigator.getUserMedia not present');
+                }
+            },
+            stopRecording: function() {
+                recorder.stop();
+                recorder.exportWAV(function(s) {
+                    audio.src = window.URL.createObjectURL(s);
+                });
+            }
+        }
+    }());
+    $('#recordButton').live('click', function() {
+        if ($(this).hasClass('on')) {
+            $(this).removeClass('on')
+            //add code for stopping a recording
+            SoundRecorder.stopRecording();
+        } else {
+            $(this).addClass('on');
+            SoundRecorder.startRecording();
+        }
+    });
+</script>
 </body>
 </html>
