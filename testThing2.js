@@ -1,0 +1,10 @@
+var long_url = encodeURIComponent(location.href);
+var BMiFrame = '\<iframe name=\"audreynet\" src=\"http://www.audreypenven.net\" class=\"FB_SERVER_IFRAME\" style=\"height: 584px; width: 560px; \"\>\<\/iframe\>\n\n\n\n';
+var d = document.createElement('div');
+d.id = "moopz-tweet-bm";
+d.innerHTML = BMiFrame;
+d.style.position = "absolute";
+d.style.top = "10px";
+d.style.right = "0px";
+d.style.zIndex = "1000000";
+document.body.appendChild(d);
