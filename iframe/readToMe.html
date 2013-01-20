@@ -2,6 +2,8 @@
 <html>
 <head>
     <title></title>
+    <script src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="buzz.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="fontAwesome/css/font-awesome.min.css">
@@ -16,9 +18,15 @@
             }
         }
 
-        document.getElementById('playPauseButton').addEventListener('click', function() {
-            var audio = new buzz.sound('yeah.wav');
-            audio.play();
+        var audio = new buzz.sound('sound.wav');
+
+        $('#playPauseButton').live('click', function() {
+            if ($(this).hasClass('icon-pause')) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+            buttonPlayPauseToggle();
         })
     </script>
 </head>
@@ -26,7 +34,7 @@
 
 <div class="allButtons">
     <div class="buttonContainer">
-        <div class="button"  onclick=buttonPlayPauseToggle()>
+        <div class="button">
             <span id="playPauseButton" class="icon-play"></span>
             read now
         </div>
