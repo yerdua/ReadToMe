@@ -14,9 +14,12 @@
             else{
                 button.className = "icon-play"
             }
-
         }
 
+        document.getElementById('playPauseButton').addEventListener('click', function() {
+            var audio = new buzz.sound('yeah.wav');
+            audio.play();
+        })
     </script>
 </head>
 <body>
