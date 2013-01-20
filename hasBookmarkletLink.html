@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>bookmarlet test</title>
+    <title>bookmarklet test</title>
+    <style>
+        a {
+            display: block
+        }
+    </style>
+    <script>
+        if (document.getElementById('read_to_me_recorder_container')) {
+            window.console.log('hiding recorder');
+            document.getElementById('read_to_me_recorder_container').style.display = "none";
+        }
+        if (document.getElementById('read_to_me_container')) {
+            window.console.log('hiding reader');
+            document.getElementById('read_to_me_container').style.display = "none";
+        }
+    </script>
 </head>
 <body>
-<a href="javascript:var%20src%3Ddocument.createElement('script')%3Bsrc.setAttribute('type'%2C'text%2Fjavascript')%3Bsrc.setAttribute('id'%2C'iframesource')%3Bsrc.setAttribute('src'%2C'http%3A%2F%2Fwww.arilacenski.com%2Fstatic%2FReadToMe%2Fiframesource.js')%3Bif(!document.getElementById('iframesource'))%7Bdocument.body.appendChild(src)%7D">twitter copy</a>
+<a href="javascript:(function() {var src = document.createElement('script');
+src.setAttribute('type', 'text/javascript');
+src.setAttribute('id', 'iframesource');
+src.setAttribute('src', 'http://www.arilacenski.com/static/ReadToMe/listenerFrame.js');
+if (!document.getElementById('iframesource')) {
+document.body.appendChild(src);
+}}())" >listener link</a>
+<a href="javascript:(function() {var src = document.createElement('script');
+src.setAttribute('type', 'text/javascript');
+src.setAttribute('id', 'recorder_iframesource');
+src.setAttribute('src', 'http://www.arilacenski.com/static/ReadToMe/recorderFrame.js');
+if (!document.getElementById('recorder_iframesource')) {
+document.body.appendChild(src);
+}}())" >recorder link</a>
 
 <!-- This is the bookmarklet code that you can minify and put into a javascript:() bookmark.
 var src = document.createElement('script');
 src.setAttribute('type', 'text/javascript');
 src.setAttribute('id', 'iframesource');
-src.setAttribute('src', 'http://www.arilacenski.com/static/ReadToMe/iframesource.js');
+src.setAttribute('src', 'http://www.arilacenski.com/static/ReadToMe/listenerFrame.js');
 if (!document.getElementById('iframesource')) {
 document.body.appendChild(src);
-}    -->
+}
+-->
 
 </body>
 </html>
