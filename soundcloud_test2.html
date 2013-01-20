@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="iframe/jquery-1.7.1.min.js"></script>
+    <script src="http://connect.soundcloud.com/sdk.js"></script>
+    <script src="soundmanager2.js"></script>
+    <script>
+        var next_url = 0;
+
+        SC.initialize({
+            client_id: "3e49c2d54c870c4c1caa62efc4073959",
+            redirect_uri: "file://localhost/Users/audreypenven/RubymineProjects/ReadToMe/callback.html",
+        });
+
+        $("#upload").live("click", function(e){
+            SC.connect(),
+            SC.post("file://localhost/Users/audreypenven/Audio%20Projects/Spurious%20Causality/wav%20files/footsteps.wav")
+        })
+
+        $("#play").live("click", function(e){
+            SC.stream("/tracks/293", function(sound){
+                sound.play();
+            });
+        })
+
+        var filterResult = function(tracks, we_want) {
+            var url = "";
+            $.each(tracks, function(i, track) {
+                console.log(track.description);
+                if(track.description.indexOf(we_want) > -1){
+                    console.log("stream id: ", track.stream_url);
+                    url = track.stream_url;
+                }
+            });
+            return url;
+        };
+
+
+        $("#search").live("click", function(){
+            SC.get('/tracks', { /*tags: "\"read to me\""*/ user_id: 33492379, description:"readToMeArticle01" }, function(tracks) {
+                console.log(tracks);
+                var we_want = 'http://audreypenven.net/blog/20121202/catching-up-photos-from-a-bunch-of-shows/';
+                next_url = filterResult(tracks, we_want);
+            });
+
+        })
+
+        $("#playfn").live("click", function() {
+            window.console.log(next_url);
+            SC.get(next_url, { 'allow_redirects': 'True' }, function(data) {
+                window.console.log(data);
+            });
+        });
+
+    </script>
+
+
+</head>
+<body>
+<a href="#" id="upload" class="button">Upload</a>
+<a href="#" id="search">search</a>
+<div id="playfn">play!</div>
+
+</body>
+</html>

@@ -3,20 +3,16 @@
 <head>
     <title></title>
     <script src="iframe/jquery-1.7.1.min.js"></script>
-    <script src="//connect.soundcloud.com/sdk.js"></script>
+    <script src="http://connect.soundcloud.com/sdk.js"></script>
     <script>
         SC.initialize({
             client_id: "3e49c2d54c870c4c1caa62efc4073959",
-            //redirect_uri: "http://example.com/callback.html",
+            redirect_uri: "file://localhost/Users/audreypenven/RubymineProjects/ReadToMe/callback.html",
         });
     </script>
 </head>
 <body>
 <script>
-    SC.initialize({
-        client_id: "c202b469a633a7a5b15c9e10b5272b78",
-        redirect_uri: "http://connect.soundcloud.com/examples/callback.html"
-    });
 
     $("#recorderUI.reset #controlButton").live("click", function(e){
         updateTimer(0);
