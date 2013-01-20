@@ -5,4 +5,5 @@
     d.id = 'read_to_me_container';
     d.innerHTML = rtm_iframe;
     document.body.appendChild(d);
+    window.console.log(document.url)
 }());
